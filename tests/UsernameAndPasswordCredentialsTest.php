@@ -2,7 +2,7 @@
 
 namespace BernardoSilva\JWTAPIClient\Tests;
 
-use BernardoSilva\UsernameAndPasswordCredentials;
+use BernardoSilva\JWTAPIClient\UsernameAndPasswordCredentials;
 use PHPUnit\Framework\TestCase;
 
 final class UsernameAndPasswordCredentialsTest extends TestCase

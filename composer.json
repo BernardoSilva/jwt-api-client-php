@@ -1,5 +1,5 @@
 {
-    "name": "bernardosilva/chefs-em-casa-api-client-php",
+    "name": "bernardosilva/jwt-api-client-php",
     "description": "API client prepared to consume API using JWT for PHP",
     "type": "library",
     "license": "GPL-3.0+",
@@ -10,10 +10,10 @@
         }
     ],
     "autoload": {
-        "psr-4": { "BernardoSilva\\": "src/" }
+        "psr-4": { "BernardoSilva\\JWTAPIClient\\": "src/" }
     },
     "autoload-dev": {
-        "psr-4": { "BernardoSilva\\Tests\\": "tests/" }
+        "psr-4": { "BernardoSilva\\JWTAPIClient\\Tests\\": "tests/" }
     },
     "require": {
         "php": ">=7.0",

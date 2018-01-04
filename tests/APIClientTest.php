@@ -2,9 +2,9 @@
 
 namespace BernardoSilva\JWTAPIClient\Tests;
 
-use BernardoSilva\AccessTokenCredentials;
-use BernardoSilva\APIClient;
-use BernardoSilva\UsernameAndPasswordCredentials;
+use BernardoSilva\JWTAPIClient\AccessTokenCredentials;
+use BernardoSilva\JWTAPIClient\APIClient;
+use BernardoSilva\JWTAPIClient\UsernameAndPasswordCredentials;
 use PHPUnit\Framework\TestCase;
 
 final class APIClientTest extends TestCase

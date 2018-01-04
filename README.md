@@ -2,10 +2,10 @@
 
 Jason Web Token API client is a library to facilitate consuming API's that require JWT token as authentication. 
 
-[![Latest Stable Version](https://poser.pugx.org/bernardosilva/chefs-em-casa-api-client-php/v/stable)](https://packagist.org/packages/bernardosilva/chefs-em-casa-api-client-php)
-[![Total Downloads](https://poser.pugx.org/bernardosilva/chefs-em-casa-api-client-php/downloads)](https://packagist.org/packages/bernardosilva/chefs-em-casa-api-client-php)
-[![Build Status](https://travis-ci.org/BernardoSilva/chefs-em-casa-api-client-php.svg?branch=master)](https://travis-ci.org/BernardoSilva/chefs-em-casa-api-client-php)
-[![License](https://poser.pugx.org/bernardosilva/chefs-em-casa-api-client-php/license)](https://packagist.org/packages/bernardosilva/chefs-em-casa-api-client-php)
+[![Latest Stable Version](https://poser.pugx.org/bernardosilva/jwt-api-client-php/v/stable)](https://packagist.org/packages/bernardosilva/jwt-api-client-php)
+[![Total Downloads](https://poser.pugx.org/bernardosilva/jwt-api-client-php/downloads)](https://packagist.org/packages/bernardosilva/jwt-api-client-php)
+[![Build Status](https://travis-ci.org/BernardoSilva/jwt-api-client-php.svg?branch=master)](https://travis-ci.org/BernardoSilva/jwt-api-client-php)
+[![License](https://poser.pugx.org/bernardosilva/jwt-api-client-php/license)](https://packagist.org/packages/bernardosilva/jwt-api-client-php)
 
 ## How to Install
 
@@ -16,11 +16,11 @@ $ composer require bernardosilva/jwt-api-client-php
 ## How to use
 
 ```php
-use ChefsEmCasa\APIClient;
+use BernardoSilva\JWTAPIClient\APIClient;
 
 $username = 'your-username';
 $password = 'your-password';
-$baseURI = 'api.chefs-em-casa.pt';
+$baseURI = 'api.your-domain.pt';
 
 $credentials = new UsernameAndPasswordCredentials($username, $password);
 

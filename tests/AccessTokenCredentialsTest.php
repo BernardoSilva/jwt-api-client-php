@@ -2,7 +2,7 @@
 
 namespace BernardoSilva\JWTAPIClient\Tests;
 
-use BernardoSilva\AccessTokenCredentials;
+use BernardoSilva\JWTAPIClient\AccessTokenCredentials;
 use PHPUnit\Framework\TestCase;
 
 final class AccessTokenCredentialsTest extends TestCase
