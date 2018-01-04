@@ -1,0 +1,26 @@
+{
+    "name": "bernardosilva/chefs-em-casa-api-client-php",
+    "description": "API client prepared to consume API using JWT for PHP",
+    "type": "library",
+    "license": "GPL-3.0+",
+    "authors": [
+        {
+            "name": "Bernardo Silva",
+            "email": "benny.stuff@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": { "BernardoSilva\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "BernardoSilva\\Tests\\": "tests/" }
+    },
+    "require": {
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "require-dev": {
+        "bernardosilva/git-hooks-php": "^2.0",
+        "phpunit/phpunit": "^6.5"
+    }
+}
