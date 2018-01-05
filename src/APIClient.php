@@ -123,7 +123,7 @@ class APIClient
      * @param string $accessToken
      * @return HandlerStack
      */
-    private function createHandlerMiddlewareToAddAccessToken(string $accessToken)
+    private function createHandlerMiddlewareToAddAccessToken($accessToken)
     {
         $stack = new HandlerStack();
         $stack->setHandler(new CurlHandler());
