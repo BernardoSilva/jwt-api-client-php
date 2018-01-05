@@ -16,7 +16,7 @@
         "psr-4": { "BernardoSilva\\JWTAPIClient\\Tests\\": "tests/" }
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=5.6",
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
