@@ -44,7 +44,7 @@ class APIClient
      * @param string $baseURI
      * @param ApiCredentials $credentials
      */
-    public function __construct(string $baseURI, ApiCredentials $credentials)
+    public function __construct($baseURI, ApiCredentials $credentials)
     {
         $this->setBaseURI($baseURI);
         $this->setCredentials($credentials);
@@ -55,7 +55,7 @@ class APIClient
      * @param array $options
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function get(string $uri, array $options = [])
+    public function get($uri, array $options = [])
     {
         return $this->getClient()->get($uri, $options);
     }
@@ -65,7 +65,7 @@ class APIClient
      * @param $options
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function delete(string $uri, $options)
+    public function delete($uri, $options)
     {
         return $this->getClient()->delete($uri, $options);
     }
@@ -75,7 +75,7 @@ class APIClient
      * @param array $options
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function patch(string $uri, array $options = [])
+    public function patch($uri, array $options = [])
     {
         return $this->getClient()->patch($uri, $options);
     }
@@ -85,7 +85,7 @@ class APIClient
      * @param array $options
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function post(string $uri, array $options = [])
+    public function post($uri, array $options = [])
     {
         return $this->getClient()->post($uri, $options);
     }
@@ -95,7 +95,7 @@ class APIClient
      * @param array $options
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function put(string $uri, array $options = [])
+    public function put($uri, array $options = [])
     {
         return $this->getClient()->put($uri, $options);
     }
@@ -211,7 +211,7 @@ class APIClient
     /**
      * @param string $baseURI
      */
-    private function setBaseURI(string $baseURI)
+    private function setBaseURI($baseURI)
     {
         $this->baseURI = $baseURI;
     }
@@ -227,7 +227,7 @@ class APIClient
     /**
      * @param string $key
      */
-    private function setKey(string $key)
+    private function setKey($key)
     {
         $this->key = $key;
     }
@@ -243,7 +243,7 @@ class APIClient
     /**
      * @param string $secret
      */
-    private function setSecret(string $secret)
+    private function setSecret($secret)
     {
         $this->secret = $secret;
     }
