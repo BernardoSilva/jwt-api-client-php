@@ -17,18 +17,28 @@ $ composer require bernardosilva/jwt-api-client-php
 
 ```php
 use BernardoSilva\JWTAPIClient\APIClient;
+use BernardoSilva\JWTAPIClient\AccessTokenCredentials;
 
 $username = 'your-username';
 $password = 'your-password';
 $baseURI = 'api.your-domain.pt';
 
-$credentials = new UsernameAndPasswordCredentials($username, $password);
 
-// When using internally with other services can generate accessToken directly
-$accessToken = $JWTManager->create($user);
-$credentials = new AccessTokenCredentials($accessToken);
+$client = new APIClient($baseURI);
+$options = [
+    'verify' => false, // might need this if API uses self signed certificate
+    'form_params' => [
+        'key' => $username,
+        'password' => $password
+    ]
+];
 
-$client = new APIClient($baseURI, $credentials);
+// authenticate on API to get token
+$response = $client->post('/api/v1/auth/login', $options);
+$loginResponseDecoded = json_decode($response->getBody()->getContents(), true);
+
+$credentials = new AccessTokenCredentials($loginResponseDecoded['access_token']);
+$client->setCredentials($credentials);
 
 // e.g. Request types
 $client->get();
@@ -38,6 +48,15 @@ $client->post();
 $client->put();
 
 ```
+
+Example of how to get access token without requesting the API:
+
+```
+// When using internally with other services can generate accessToken directly
+$accessToken = $JWTManager->create($user);
+$credentials = new AccessTokenCredentials($accessToken);
+```
+
 
 ## How to contribute
 
