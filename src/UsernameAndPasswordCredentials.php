@@ -19,7 +19,7 @@ final class UsernameAndPasswordCredentials implements ApiCredentials
      * @param string $username
      * @param string $password
      */
-    public function __construct(string $username, string $password)
+    public function __construct($username, $password)
     {
         $this->setUsername($username);
         $this->setPassword($password);
@@ -28,7 +28,7 @@ final class UsernameAndPasswordCredentials implements ApiCredentials
     /**
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -36,7 +36,7 @@ final class UsernameAndPasswordCredentials implements ApiCredentials
     /**
      * @param string $username
      */
-    public function setUsername(string $username)
+    public function setUsername($username)
     {
         $this->username = $username;
     }
@@ -44,7 +44,7 @@ final class UsernameAndPasswordCredentials implements ApiCredentials
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -52,7 +52,7 @@ final class UsernameAndPasswordCredentials implements ApiCredentials
     /**
      * @param string $password
      */
-    public function setPassword(string $password)
+    public function setPassword($password)
     {
         $this->password = $password;
     }

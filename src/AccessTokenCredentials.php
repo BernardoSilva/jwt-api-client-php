@@ -13,7 +13,7 @@ final class AccessTokenCredentials implements ApiCredentials
      * AccessTokenCredentials constructor.
      * @param string $accessToken
      */
-    public function __construct(string $accessToken)
+    public function __construct($accessToken)
     {
         $this->setAccessToken($accessToken);
     }
@@ -21,7 +21,7 @@ final class AccessTokenCredentials implements ApiCredentials
     /**
      * @return string
      */
-    public function getAccessToken(): string
+    public function getAccessToken()
     {
         return $this->accessToken;
     }
@@ -29,7 +29,7 @@ final class AccessTokenCredentials implements ApiCredentials
     /**
      * @param string $accessToken
      */
-    public function setAccessToken(string $accessToken)
+    public function setAccessToken($accessToken)
     {
         $this->accessToken = $accessToken;
     }
