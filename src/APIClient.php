@@ -44,10 +44,12 @@ class APIClient
      * @param string $baseURI
      * @param ApiCredentials $credentials
      */
-    public function __construct($baseURI, ApiCredentials $credentials)
+    public function __construct($baseURI, ApiCredentials $credentials = null)
     {
         $this->setBaseURI($baseURI);
-        $this->setCredentials($credentials);
+        if ($credentials) {
+            $this->setCredentials($credentials);
+        }
     }
 
     /**
@@ -102,19 +104,24 @@ class APIClient
 
     /**
      * Create a new Guzzle client to consume the API
+     * NOTE: It will only add bearer token if credentials are present.
      *
      * @return Client
      */
     private function createNewClient()
     {
-        $accessToken = $this->getAccessToken();
-        $stack = $this->createHandlerMiddlewareToAddAccessToken($accessToken);
-
-        return new Client([
+        $clientOptions = [
             'base_uri' => $this->getBaseURI(),
-            'handler' => $stack,
             'timeout' => self::REQUEST_TIMEOUT
-            ]);
+        ];
+
+        if ($this->getCredentials()) {
+            $accessToken = $this->getAccessToken();
+            $stack = $this->createHandlerMiddlewareToAddAccessToken($accessToken);
+            $clientOptions['handler'] = $stack;
+        }
+
+        return new Client($clientOptions);
     }
 
     /**
@@ -140,22 +147,7 @@ class APIClient
         if ($this->getCredentials() instanceof AccessTokenCredentials) {
             return $this->getCredentials()->getAccessToken();
         }
-
-        $this->setKey($this->getCredentials()->getUsername());
-        $this->setSecret($this->getCredentials()->getPassword());
-
-        $client = new Client([
-            'base_uri' => $this->getBaseURI(),
-            'timeout' => self::REQUEST_TIMEOUT
-        ]);
-        $loginParams = [
-            '_username' => $this->getKey(),
-            '_password' => $this->getSecret()
-        ];
-        $response = $client->post('login_check', ['form_params' => $loginParams]);
-        $loginResponseDecoded = json_decode($response->getBody()->getContents(), true);
-
-        return $loginResponseDecoded['token'];
+        return '';
     }
 
     /**
