@@ -40,16 +40,53 @@ class APIClient
     private $credentials;
 
     /**
+     * Key value array containing client options for GuzzleClient
+     *
+     *
+     * @var array
+     */
+    private $clientOptions = [];
+
+    /**
      * APIClient constructor.
      * @param string $baseURI
      * @param ApiCredentials $credentials
+     * @param array $options
      */
-    public function __construct($baseURI, ApiCredentials $credentials = null)
+    public function __construct($baseURI, ApiCredentials $credentials = null, array $options = [])
     {
         $this->setBaseURI($baseURI);
         if ($credentials) {
             $this->setCredentials($credentials);
         }
+        if ($options) {
+            $this->setClientOptions($options);
+        }
+    }
+
+    /**
+     * Create an Authenticated APIClient
+     *
+     * @param $baseURI
+     * @param ApiCredentials $credentials
+     * @param array $options
+     * @return APIClient
+     */
+    public static function createAuthenticatedClient($baseURI, ApiCredentials $credentials, array $options = [])
+    {
+        return new APIClient($baseURI, $credentials, $options);
+    }
+
+    /**
+     * Create an unauthenticated APIClient
+     *
+     * @param $baseURI
+     * @param array $options
+     * @return APIClient
+     */
+    public static function createClient($baseURI, array $options = [])
+    {
+        return new APIClient($baseURI, null, $options);
     }
 
     /**
@@ -110,6 +147,16 @@ class APIClient
      */
     private function createNewClient()
     {
+        $clientOptions = $this->generateClientOptions();
+
+        return new Client($clientOptions);
+    }
+
+    /**
+     * @return array
+     */
+    private function generateClientOptions()
+    {
         $clientOptions = [
             'base_uri' => $this->getBaseURI(),
             'timeout' => self::REQUEST_TIMEOUT
@@ -121,7 +168,9 @@ class APIClient
             $clientOptions['handler'] = $stack;
         }
 
-        return new Client($clientOptions);
+        $clientOptions = $this->getClientOptions() + $clientOptions;
+
+        return $clientOptions;
     }
 
     /**
@@ -254,5 +303,33 @@ class APIClient
     public function setCredentials(ApiCredentials $credentials)
     {
         $this->credentials = $credentials;
+    }
+
+    /**
+     * @return array
+     */
+    private function getClientOptions()
+    {
+        return $this->clientOptions;
+    }
+
+    /**
+     * @param array $clientOptions
+     */
+    private function setClientOptions(array $clientOptions)
+    {
+        $this->clientOptions = [];
+        foreach ($clientOptions as $key => $clientOption) {
+            $this->addClientOption($key, $clientOption);
+        }
+    }
+
+    /**
+     * @param $optionName
+     * @param $optionValue
+     */
+    private function addClientOption($optionName, $optionValue)
+    {
+        $this->clientOptions[$optionName] = $optionValue;
     }
 }
